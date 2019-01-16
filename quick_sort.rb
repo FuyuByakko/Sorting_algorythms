@@ -8,6 +8,8 @@ def partition(arr, arr_start, arr_end)
     return
   end
 
+  #want to change how the partitioning works
+
   #set index where the pivot will be shifted (all elements to the left of index are less than pivot)
   index_pos = arr_start
   #select a pivot point - in our case the element in the middle of the array
