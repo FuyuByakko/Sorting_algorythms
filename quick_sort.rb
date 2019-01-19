@@ -30,6 +30,10 @@ def partition(arr, arr_start, arr_end)
       end
       index_pos += 1
     end
+    if index_pos > arr_end
+      index_pos = arr_end
+      break
+    end
   end
   
   #after all array is checked, the index is set right AFTER the last value less than pivot
@@ -37,13 +41,13 @@ def partition(arr, arr_start, arr_end)
   #if the index is to the LEFT of pivot, pivot can be swapped with the element at the index itself
   if index_pos <= pivot
     arr[pivot], arr[index_pos] = arr[index_pos], arr[pivot]
-    #puts "returning #{index_pos}"
-    #puts "#{arr[arr_start..arr_end]}"
+    puts "returning #{index_pos}"
+    puts "#{arr[arr_start..arr_end]}"
     return index_pos
   else
     arr[pivot], arr[index_pos - 1] = arr[index_pos - 1], arr[pivot]
-    #puts "returning #{index_pos - 1}"
-    #puts "#{arr[arr_start..arr_end]}"
+    puts "returning #{index_pos - 1}"
+    puts "#{arr[arr_start..arr_end]}"
     return index_pos - 1
   end
 end
@@ -66,31 +70,39 @@ end
 
 #checking partition function
   #partition([1,6,5,4,2], 0, 4)
+  partition([4,1,2,7,5,9], 0,5)
 
 #checking quick_sort
-def sorting_checks()
-  puts "sorting empty array []"
-  s1 = []
-  quick_sort([])
-  puts "#{s1}"
+# def sorting_checks()
+#   puts "sorting empty array []"
+#   s1 = []
+#   quick_sort([])
+#   puts "#{s1}"
 
-  puts "sorting 1 element array [3]"
-  s2 = [3]
-  quick_sort(s2)
-  puts "#{s2}"
+#   puts "sorting 1 element array [3]"
+#   s2 = [3]
+#   quick_sort(s2)
+#   puts "#{s2}"
 
-  puts "sorting already sorted array [1,2,3,4,5]"
-  s3 = [1,2,3,4,5]
-  quick_sort(s3)
-  puts "#{s3}"
+#   puts "sorting already sorted array [1,2,3,4,5]"
+#   s3 = [1,2,3,4,5]
+#   quick_sort(s3)
+#   puts "#{s3}"
 
-  puts "sorting array already in descending order [3,1,-2]"
-  s4 = [3,1,-2]
-  quick_sort(s4)
-  puts "#{s4}"
+#   puts "sorting array already in descending order [3,1,-2]"
+#   s4 = [3,1,-2]
+#   quick_sort(s4)
+#   puts "#{s4}"
 
-  puts "sorting random array [5,2,1,6,4,2,5,2,8,1,3,7]"
-  s5 = [5,2,1,6,4,2,5,2,8,1,3,7]
-  quick_sort(s5)
-  puts "#{s5}"
-end
+#   puts "sorting random array [5,2,1,6,4,2,5,2,8,1,3,7]"
+#   s5 = [5,2,1,6,4,2,5,2,8,1,3,7]
+#   quick_sort(s5)
+#   puts "#{s5}"
+
+#   puts "sorting random array [5,2,1,6,4,2,5,2,8,1,3,7]"
+#   s6 = [4,1,2,7,5,9]
+#   quick_sort(s6)
+#   puts "#{s6}"
+# end
+
+# sorting_checks()
