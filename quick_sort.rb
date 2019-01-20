@@ -38,7 +38,7 @@ def partition(arr, arr_start, arr_end)
   #after all array is checked, the index is set right AFTER the last value less than pivot
   #if index is to the RIGHT of pivot, we need to swap pivot with the previous element (pivot - 1)
   #if the index is to the LEFT of pivot, pivot can be swapped with the element at the index itself
-  if index_pos <= pivot || index_pos > pivot && (arr[index_pos] <= arr[pivot])
+  if index_pos <= pivot || (index_pos > pivot && arr[index_pos] <= arr[pivot])
     arr[pivot], arr[index_pos] = arr[index_pos], arr[pivot]
    # puts "returning #{index_pos}"
    # puts "#{arr[arr_start..arr_end]}"
@@ -69,8 +69,9 @@ end
 
 #checking partition function
   #partition([1,6,5,4,2], 0, 4)
-  partition([4,1,2,7,5,9], 0,5)
+  #partition([4,1,2,7,5,9], 0,5)
 
+#checking sorting function with random arrays
 def sorted(arr)
   for i in 0...arr.length
     if arr[i] > arr[i+1]
