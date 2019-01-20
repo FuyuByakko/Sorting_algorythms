@@ -30,24 +30,23 @@ def partition(arr, arr_start, arr_end)
       end
       index_pos += 1
     end
+  end
     if index_pos > arr_end
       index_pos = arr_end
-      break
     end
-  end
   
   #after all array is checked, the index is set right AFTER the last value less than pivot
   #if index is to the RIGHT of pivot, we need to swap pivot with the previous element (pivot - 1)
   #if the index is to the LEFT of pivot, pivot can be swapped with the element at the index itself
-  if index_pos <= pivot
+  if index_pos <= pivot || index_pos > pivot && (arr[index_pos] <= arr[pivot])
     arr[pivot], arr[index_pos] = arr[index_pos], arr[pivot]
-    puts "returning #{index_pos}"
-    puts "#{arr[arr_start..arr_end]}"
+   # puts "returning #{index_pos}"
+   # puts "#{arr[arr_start..arr_end]}"
     return index_pos
   else
     arr[pivot], arr[index_pos - 1] = arr[index_pos - 1], arr[pivot]
-    puts "returning #{index_pos - 1}"
-    puts "#{arr[arr_start..arr_end]}"
+   # puts "returning #{index_pos - 1}"
+   # puts "#{arr[arr_start..arr_end]}"
     return index_pos - 1
   end
 end
@@ -71,6 +70,23 @@ end
 #checking partition function
   #partition([1,6,5,4,2], 0, 4)
   partition([4,1,2,7,5,9], 0,5)
+
+def sorted(arr)
+  for i in 0...arr.length
+    if arr[i] > arr[i+1]
+      return false
+    end
+    return true
+  end
+end
+
+loop do
+  arr = (0..1000).to_a.shuffle
+  quick_sort(arr)
+  puts 'wtf' if !sorted(arr)
+  puts "ok"
+end
+
 
 #checking quick_sort
 # def sorting_checks()
