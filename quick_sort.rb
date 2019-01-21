@@ -1,3 +1,76 @@
+def partition_2sides(arr, arr_start, arr_end)
+  #check if array is empty or of length 1. if Yes, no partitioning or sorting required
+  if arr.length < 2
+    return
+  end
+  #if end of array is the same as start - 1 element array already sorted, otherwise no values to check
+  if arr_end <= arr_start
+    return
+  end
+
+  #select a pivot point - in our case the element in the middle of the array as base
+  pivot = (arr_end - arr_start) / 2 + arr_start
+  #for test can check any of the below as well
+  #pivot = arr_start
+  #pivot = arr_end
+
+  i = arr_start
+  j = arr_end
+  finish = false
+
+  #start counting from both sides
+  while !finish do
+    #iterate from left to right till we find a value that is larger than our pivot
+    while arr[i] <= arr[pivot] do
+      if i >= j
+        finish = true
+        break
+      end
+      i += 1
+    end
+    #iterate from right to left till we find a value that needs to be switched
+    while !finish && arr[j] >= arr[pivot] do
+      if j <= i
+        finish = true
+        break
+      end
+      j -= 1
+    end
+
+    #swap the elements if still not reached end
+    if !finish
+      arr[i], arr[j] = arr[j], arr[i]
+    end
+  end
+
+  #after we go through the whole array and our i and j meet, we check the meeting point
+  #if meeting point is located at the same index as pivot, no actions needed
+
+  #if meeting point is LEFT of pivot and is larger, we need to swap pivot with last element
+  if i < pivot #&& arr[i] >= arr[pivot]
+    arr[i], arr[pivot] = arr[pivot], arr[i]
+    #puts "returning #{i}"
+    #puts "#{arr[arr_start..arr_end]}"
+    return i
+  #if meeting point is LEFT of pivot and is smaller, is not possible since i is checked first and it will not stop on any number <= arr[pivot]
+  #elsif i < pivot && arr[i] < arr[pivot]
+  # arr[i + 1], arr[pivot] = arr[pivot], arr[i + 1]
+  #  return i + 1
+  #if meeting point is RIGHT of pivot and is larger, we need to swap pivot with PREVIOUS element
+  elsif i > pivot && arr[i] > arr[pivot]
+    arr[i - 1], arr[pivot] = arr[pivot], arr[i - 1]
+    #puts "returning #{i-1}"
+    #puts "#{arr[arr_start..arr_end]}"
+    return i - 1
+  #if meeting point is RIGHT of pivot and is smaller, we need to swap pivot with NEXT element    
+  else 
+    arr[i], arr[pivot] = arr[pivot], arr[i]
+    #puts "returning #{i}"
+    #puts "#{arr[arr_start..arr_end]}"
+    return i        
+  end
+end
+
 def partition(arr, arr_start, arr_end)
   #check if array is empty or of length 1. if Yes, no partitioning or sorting required
   if arr.length < 2
@@ -54,12 +127,12 @@ end
 #function received an array, default values for first iteration is the full array
 def quick_sort(arr, arr_start = 0, arr_end = arr.length - 1)
   #if end of array is the same as start - 1 element array already sorted, otherwise no values to check
-  if arr_end <= arr_start
+  if arr_end <= arr_start || arr.length < 2
     return
   end
 
   #partition the received array and receive the pivot point index to divide it further
-  pivot = partition(arr, arr_start, arr_end)
+  pivot = partition_2sides(arr, arr_start, arr_end)
   #sort the remaining halves to the left and right of pivot
   quick_sort(arr, arr_start, pivot - 1)
   quick_sort(arr, pivot + 1, arr_end)
@@ -69,6 +142,7 @@ end
 
 #checking partition function
   #partition([1,6,5,4,2], 0, 4)
+<<<<<<< HEAD
   #partition([4,1,2,7,5,9], 0,5)
 
 #checking sorting function with random arrays
@@ -88,6 +162,9 @@ loop do
   puts "ok"
 end
 
+=======
+  #partition_2sides([4,1,2,7,5,9], 0,5)
+>>>>>>> feature
 
 #checking quick_sort
 # def sorting_checks()
@@ -116,10 +193,34 @@ end
 #   quick_sort(s5)
 #   puts "#{s5}"
 
+<<<<<<< HEAD
 #   puts "sorting random array [5,2,1,6,4,2,5,2,8,1,3,7]"
+=======
+#   puts "sorting a single array [5,2,1,6,4,2,5,2,8,1,3,7]"
+>>>>>>> feature
 #   s6 = [4,1,2,7,5,9]
 #   quick_sort(s6)
 #   puts "#{s6}"
 # end
 
 # sorting_checks()
+<<<<<<< HEAD
+=======
+#checking sorting function with random arrays
+def sorted(arr)
+  for i in 0...arr.length
+    if arr[i] > arr[i+1]
+      return false
+    end
+    return true
+  end
+end
+
+loop do
+  arr = (0..10).to_a.shuffle
+  #puts "checking #{arr}"
+  quick_sort(arr)
+  puts "wtf - #{arr}" if !sorted(arr)
+  puts "ok"
+end
+>>>>>>> feature
