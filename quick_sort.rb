@@ -142,29 +142,7 @@ end
 
 #checking partition function
   #partition([1,6,5,4,2], 0, 4)
-<<<<<<< HEAD
-  #partition([4,1,2,7,5,9], 0,5)
-
-#checking sorting function with random arrays
-def sorted(arr)
-  for i in 0...arr.length
-    if arr[i] > arr[i+1]
-      return false
-    end
-    return true
-  end
-end
-
-loop do
-  arr = (0..1000).to_a.shuffle
-  quick_sort(arr)
-  puts 'wtf' if !sorted(arr)
-  puts "ok"
-end
-
-=======
   #partition_2sides([4,1,2,7,5,9], 0,5)
->>>>>>> feature
 
 #checking quick_sort
 # def sorting_checks()
@@ -193,19 +171,14 @@ end
 #   quick_sort(s5)
 #   puts "#{s5}"
 
-<<<<<<< HEAD
 #   puts "sorting random array [5,2,1,6,4,2,5,2,8,1,3,7]"
-=======
-#   puts "sorting a single array [5,2,1,6,4,2,5,2,8,1,3,7]"
->>>>>>> feature
 #   s6 = [4,1,2,7,5,9]
 #   quick_sort(s6)
 #   puts "#{s6}"
 # end
 
 # sorting_checks()
-<<<<<<< HEAD
-=======
+
 #checking sorting function with random arrays
 def sorted(arr)
   for i in 0...arr.length
@@ -223,4 +196,3 @@ loop do
   puts "wtf - #{arr}" if !sorted(arr)
   puts "ok"
 end
->>>>>>> feature
